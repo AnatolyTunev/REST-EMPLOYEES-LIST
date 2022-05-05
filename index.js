@@ -1,15 +1,17 @@
 const express = require("express");
-const fs = require("fs");
     
 const app = express();
 const jsonParser = express.json();
   
-app.use(express.static(__dirname + "/public"));
-  
-const filePath = "emplist.json";
 app.get("/api/employees", function(req, res){
        
-    const content = fs.readFileSync(filePath,"utf8");
+    const content1 = '[{"pernr":"100","nachn":"Иван","vorna":"Федотов","birthdate":"13.03.1990"}';
+    const content2 = ',{"pernr":"200","nachn":"Игорь","vorna":"Семенов","birthdate":"01.01.1971"}';
+    const content3 = ',{"pernr":"300","nachn":"Федор","vorna":"Федотов","birthdate":"13.03.1990"}';
+    const content4 = ',{"pernr":"400","nachn":"Семен","vorna":"Семенов","birthdate":"01.01.1971"}';
+    const content5 = ',{"pernr":"500","nachn":"Павел","vorna":"Павлов","birthdate":"21.01.1972"}';
+    const content6 = ',{"pernr":"600","nachn":"Светлана","vorna":"Светличная","birthdate":"08.03.1989"}]';
+    const content = content1 + content2 + content3 + content4 + content5 + content6;
     const employees = JSON.parse(content);
     res.send(employees);
 });
@@ -17,7 +19,13 @@ app.get("/api/employees", function(req, res){
 app.get("/api/employees/:pernr", function(req, res){
        
     const pernr = req.params.pernr; // получаем pernr
-    const content = fs.readFileSync(filePath, "utf8");
+    const content1 = '[{"pernr":"100","nachn":"Иван","vorna":"Федотов","birthdate":"13.03.1990"}';
+    const content2 = ',{"pernr":"200","nachn":"Игорь","vorna":"Семенов","birthdate":"01.01.1971"}';
+    const content3 = ',{"pernr":"300","nachn":"Федор","vorna":"Федотов","birthdate":"13.03.1990"}';
+    const content4 = ',{"pernr":"400","nachn":"Семен","vorna":"Семенов","birthdate":"01.01.1971"}';
+    const content5 = ',{"pernr":"500","nachn":"Павел","vorna":"Павлов","birthdate":"21.01.1972"}';
+    const content6 = ',{"pernr":"600","nachn":"Светлана","vorna":"Светличная","birthdate":"08.03.1989"}]';
+    const content = content1 + content2 + content3 + content4 + content5 + content6;
     const employees = JSON.parse(content);
     let employee = null;
     var pos_eq = pernr.indexOf("=") + 1;
@@ -48,14 +56,21 @@ app.post("/api/employees/", jsonParser, function (req, res) {
     const employeeBirth = req.body.birthdate;
     let employee = {pernr: employeePernr, nachn: employeeNachn, vorna: employeeVorna, birthdate: employeeBirth};
       
-    let data = fs.readFileSync(filePath, "utf8");
-    let employees = JSON.parse(data);
-      
+    const content1 = '[{"pernr":"100","nachn":"Иван","vorna":"Федотов","birthdate":"13.03.1990"}';
+    const content2 = ',{"pernr":"200","nachn":"Игорь","vorna":"Семенов","birthdate":"01.01.1971"}';
+    const content3 = ',{"pernr":"300","nachn":"Федор","vorna":"Федотов","birthdate":"13.03.1990"}';
+    const content4 = ',{"pernr":"400","nachn":"Семен","vorna":"Семенов","birthdate":"01.01.1971"}';
+    const content5 = ',{"pernr":"500","nachn":"Павел","vorna":"Павлов","birthdate":"21.01.1972"}';
+    const content6 = ',{"pernr":"600","nachn":"Светлана","vorna":"Светличная","birthdate":"08.03.1989"}]';
+    const content = content1 + content2 + content3 + content4 + content5 + content6;
+    const employees = JSON.parse(content);
+
+       
     // добавляем сотрудника в массив
     employees.push(employee);
     data = JSON.stringify(employees);
     // перезаписываем файл с новыми данными
-    fs.writeFileSync("emplist.json", data);
+
     res.send(employees);
 });
    
