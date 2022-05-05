@@ -76,9 +76,9 @@ app.post("/api/employees/", jsonParser, function (req, res) {
        
     // добавляем сотрудника в массив
     employees.push(employee);
-    //data = JSON.stringify(employees);
+    const data = JSON.stringify(employees);
 
-    res.send(employees);
+    res.send(data);
 });
 //app.use('/api/employees', emplistRouter);
 
