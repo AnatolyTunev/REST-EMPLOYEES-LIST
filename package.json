@@ -1,0 +1,24 @@
+{
+  "name": "rest-employees-list",
+  "version": "1.0.0",
+  "description": "A demo REST API with Node.js Express.js ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnatolyTunev/REST-EMPLOYEES-LIST.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnatolyTunev/REST-EMPLOYEES-LIST/issues"
+  },
+  "homepage": "https://github.com/AnatolyTunev/REST-EMPLOYEES-LIST#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
